@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import *
+from .forms import *
 
 
 @admin.register(Account)
@@ -20,3 +20,19 @@ class DocumentAdmin(admin.ModelAdmin):
     date_hierarchy = 'date'
     list_display = ('number', 'date', 'concept')
     inlines = [DocumentJournals, ]
+    form = DocumentForm
+
+    fieldsets = (
+        ('', {
+            'classes': ('grp-collapse', 'grp-open'),
+            'fields': (
+                ('date', 'number', 'user'),
+                ('concept',),
+                ('debit_sum', 'credit_sum', 'difference'),
+            )
+        }),
+    )
+
+    class Media:
+        js = ('backend/js/document.admin.js', )
+        

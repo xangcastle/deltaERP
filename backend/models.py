@@ -42,4 +42,5 @@ class Journal(base):
     credit = models.FloatField(default=0.0)
 
     def __str__(self):
-        return
+        return ""
+
