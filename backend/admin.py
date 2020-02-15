@@ -1,12 +1,18 @@
 from django.contrib import admin
 from .forms import *
+from import_export.admin import ImportExportModelAdmin
 
 
 @admin.register(Account)
-class AccountAdmin(admin.ModelAdmin):
+class AccountAdmin(ImportExportModelAdmin):
     list_display = ('code', 'name')
     list_filter = ('active',)
     search_fields = ('code', 'name')
+
+
+@admin.register(Journal)
+class JournalAdmin(ImportExportModelAdmin):
+    pass
 
 
 class DocumentJournals(admin.TabularInline):
@@ -16,7 +22,7 @@ class DocumentJournals(admin.TabularInline):
 
 
 @admin.register(Document)
-class DocumentAdmin(admin.ModelAdmin):
+class DocumentAdmin(ImportExportModelAdmin):
     date_hierarchy = 'date'
     list_display = ('number', 'date', 'concept')
     inlines = [DocumentJournals, ]
@@ -35,4 +41,4 @@ class DocumentAdmin(admin.ModelAdmin):
 
     class Media:
         js = ('backend/js/document.admin.js', )
-        
+
