@@ -1,6 +1,7 @@
 from django.db import models
 from grappelli_extras.models import base
 from django.contrib.auth.models import User
+from django.db.models import Sum
 
 
 class Account(base):
@@ -13,6 +14,15 @@ class Account(base):
 
     def __str__(self):
         return "-".join([self.code or "", self.name or ""])
+
+    def journals(self):
+        return self.account_journals.all()
+
+    def total_debit(self):
+        return round(float(self.journals().aggregate(Sum('debit'))['debit__sum'] or 0.0), 2)
+
+    def total_credit(self):
+        return round(float(self.journals().aggregate(Sum('credit'))['credit__sum'] or 0.0), 2)
 
 
 class Document(base):
@@ -44,3 +54,14 @@ class Journal(base):
     def __str__(self):
         return ""
 
+    @property
+    def date(self):
+        return self.document.date
+
+    @property
+    def number(self):
+        return self.document.number
+
+    @property
+    def concept(self):
+        return self.document.concept
