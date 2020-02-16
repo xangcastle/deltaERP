@@ -3,7 +3,6 @@
 *.pyo
 venv/
 media/
-static/
 .idea/
 .vscode/
 db.sqlite3
