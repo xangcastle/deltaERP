@@ -4,12 +4,20 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 
 
+class AccountType(models.IntegerChoices):
+    INGRESO = 1, 'Ingresos'
+    GASTO = 2, 'Gastos administrativos'
+    COSTO = 3, 'Gastos de ventas'
+    BALANCE = 4, 'Cuentas de balance'
+
+
 class Account(base):
     """
         account for journals
     """
     code = models.CharField(max_length=65, null=True, blank=True)
     name = models.CharField(max_length=165, null=True, blank=True)
+    type = models.IntegerField(choices=AccountType.choices, default=AccountType.GASTO)
     active = models.BooleanField(default=False)
 
     def __str__(self):

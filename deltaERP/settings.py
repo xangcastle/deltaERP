@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'backend',
     'grappelli_extras',
     'grappelli',
     'import_export',
@@ -42,8 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'backend',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [

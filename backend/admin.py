@@ -5,8 +5,8 @@ from import_export.admin import ImportExportModelAdmin
 
 @admin.register(Account)
 class AccountAdmin(ImportExportModelAdmin):
-    list_display = ('code', 'name', 'total_debit', 'total_credit')
-    list_filter = ('active',)
+    list_display = ('code', 'name', 'type', 'total_debit', 'total_credit', 'active')
+    list_filter = ('type', 'active')
     search_fields = ('code', 'name')
 
 

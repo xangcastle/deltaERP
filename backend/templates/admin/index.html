@@ -1,0 +1,36 @@
+{% extends 'admin/index.html' %}
+
+{% load dashboard humanize %}
+
+
+
+{% block content %}
+    {% totales as t %}
+    <div class="grp-module">
+        <table class="grp-table">
+            <thead></thead>
+            <tbody>
+            <tr>
+                <td>Ingresos</td>
+                <td>{{ t.INGRESOS|intcomma }}</td>
+            </tr>
+            <tr>
+                <td>Gastos administrativos</td>
+                <td>{{ t.GASTOS|intcomma }}</td>
+            </tr>
+            <tr>
+                <td>Gastos de venta</td>
+                <td>{{ t.COSTOS|intcomma }}</td>
+            </tr>
+            <tr>
+                <td>Utilidad o Pérdida</td>
+                <td>{{ t.UTILIDAD|intcomma }}</td>
+            </tr>
+            <tr>
+                <td>IR</td>
+                <td>{{ t.IMPUESTO|intcomma }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
